@@ -28,9 +28,11 @@
   <Rule xsi:type="RuleCollection" Mode="Or">
     <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
   </Rule>
+
   <VersionOverrides Version="1.0">
     <Hosts>
       <Host xsi:type="Mailbox">
+        <FunctionFile resid="functionFileUrl"/>
         <ExtensionPoint xsi:type="MessageReadCommandSurface">
           <OfficeTab id="Message">
             <Group id="msgReadGroup">
@@ -55,6 +57,7 @@
         </ExtensionPoint>
       </Host>
     </Hosts>
+
     <Resources>
       <bt:Images>
         <bt:Image id="icon16" DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/icon-16.png"/>
