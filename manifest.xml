@@ -2,21 +2,29 @@
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:type="MessageReadCommandSurface"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
            Version="1.0"
            Id="9f86bab1-4fb6-4ae6-9ed9-ffc48ea8ae08"
            OfficeAppType="MessageRead"
-           StartPage="https://sonutechsavy.github.io/ReplyAllWarning/taskpane.html"
            DisplayName="Reply All Warning"
-           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
-           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides">
+           StartPage="https://sonutechsavy.github.io/ReplyAllWarning/taskpane.html">
+
+  <Identity Name="ReplyAllWarning"
+            Version="1.0.0.0"
+            PublicKeyToken="0000000000000000"
+            Culture="neutral" />
+
   <Hosts>
-    <Host Name="Mailbox"/>
+    <Host Name="Mailbox" />
   </Hosts>
+
   <Requirements>
     <Sets DefaultMinVersion="1.1">
-      <Set Name="Mailbox"/>
+      <Set Name="Mailbox" />
     </Sets>
   </Requirements>
+
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
@@ -24,7 +32,9 @@
       </DesktopSettings>
     </Form>
   </FormSettings>
+
   <Permissions>ReadWriteMailbox</Permissions>
+
   <Rule xsi:type="RuleCollection" Mode="Or">
     <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
   </Rule>
@@ -35,9 +45,9 @@
         <FunctionFile resid="functionFileUrl"/>
         <ExtensionPoint xsi:type="MessageReadCommandSurface">
           <OfficeTab id="Message">
-            <Group id="msgReadGroup">
+            <Group id="group1">
               <Label resid="groupLabel"/>
-              <Control xsi:type="Button" id="msgReadButton">
+              <Control xsi:type="Button" id="button1">
                 <Label resid="buttonLabel"/>
                 <Supertip>
                   <Title resid="buttonLabel"/>
@@ -68,12 +78,4 @@
         <bt:Url id="functionFileUrl" DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="groupLabel" DefaultValue="Reply Tools"/>
-        <bt:String id="buttonLabel" DefaultValue="Reply All Warning"/>
-      </bt:ShortStrings>
-      <bt:LongStrings>
-        <bt:String id="buttonTooltip" DefaultValue="Warn before replying to all"/>
-      </bt:LongStrings>
-    </Resources>
-  </VersionOverrides>
-</OfficeApp>
+        <bt
