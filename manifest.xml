@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
-           xmlns:ov="http://schemas.microsoft.com/office/mailappversionoverrides"
-           xsi:type="MailApp">
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/mailappversionoverrides/1.1"
+  xsi:type="MailApp">
 
   <Id>9f86bab1-4fb6-4ae6-9ed9-ffc48ea8ae08</Id>
   <Version>1.0.0.0</Version>
@@ -15,9 +16,7 @@
   <HighResolutionIconUrl DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/images/icon-80.png"/>
   <SupportUrl DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning"/>
 
-  <Hosts>
-    <Host Name="Mailbox"/>
-  </Hosts>
+  <Hosts><Host Name="Mailbox"/></Hosts>
 
   <Requirements>
     <Sets DefaultMinVersion="1.10">
@@ -25,15 +24,18 @@
     </Sets>
   </Requirements>
 
+  <!-- Allow opening dialog at github.io -->
+  <AppDomains>
+    <AppDomain>https://sonutechsavy.github.io</AppDomain>
+  </AppDomains>
+
   <FormSettings>
     <Form xsi:type="ItemCompose"/>
   </FormSettings>
 
   <Permissions>ReadWriteItem</Permissions>
 
-  <VersionOverrides xsi:type="VersionOverridesV1_1"
-      xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1">
-
+  <VersionOverrides xsi:type="VersionOverridesV1_1">
     <Hosts>
       <Host xsi:type="MailHost">
         <DesktopFormFactor>

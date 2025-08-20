@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="utf-8" />
   <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
   <script src="https://sonutechsavy.github.io/ReplyAllWarning/dialog.js"></script>
+  <style>
+    body { font-family: system-ui, Segoe UI, Arial, sans-serif; margin: 18px; }
+    h3 { margin: 0 0 8px; }
+    button { margin-right: 8px; padding: 8px 12px; }
+  </style>
 </head>
 <body>
-  <h3>⚠️ Warning</h3>
+  <h3>⚠️ Reply All Warning</h3>
   <p id="msg"></p>
   <button onclick="sendAnyway()">Send anyway</button>
   <button onclick="cancelSend()">Don't send</button>
