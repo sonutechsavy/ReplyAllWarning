@@ -4,38 +4,39 @@
            xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
            xmlns:ov="http://schemas.microsoft.com/office/mailappversionoverrides"
            xsi:type="MailApp">
-  <Id>3fd77d7e-8d9c-4301-bd1b-6a9d52d5b1f2</Id>
+
+  <Id>9f86bab1-4fb6-4ae6-9ed9-ffc48ea8ae08</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>TechSavyPro</ProviderName>
+  <ProviderName>sonutechsavy</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Reply-All Guard"/>
-  <Description DefaultValue="Warn or block when Reply All has more than 3 recipients."/>
-  <IconUrl DefaultValue="https://example.com/assets/icon-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://example.com/assets/icon-80.png"/>
-  <SupportUrl DefaultValue="https://example.com"/>
+  <DisplayName DefaultValue="Reply All Warning"/>
+  <Description DefaultValue="Warns users when replying all to more than 3 recipients."/>
+  <IconUrl DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/images/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/images/icon-80.png"/>
+  <SupportUrl DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning"/>
+
   <Hosts>
-    <Host Name="Mailbox" />
+    <Host Name="Mailbox"/>
   </Hosts>
+
   <Requirements>
     <Sets DefaultMinVersion="1.10">
-      <Set Name="Mailbox" />
+      <Set Name="Mailbox"/>
     </Sets>
   </Requirements>
+
   <FormSettings>
-    <Form xsi:type="ItemCompose" />
+    <Form xsi:type="ItemCompose"/>
   </FormSettings>
+
   <Permissions>ReadWriteItem</Permissions>
 
-  <VersionOverrides xsi:type="VersionOverridesV1_0" xmlns="http://schemas.microsoft.com/office/mailappversionoverrides">
-    <Requirements>
-      <bt:Sets DefaultMinVersion="1.10">
-        <bt:Set Name="Mailbox" />
-      </bt:Sets>
-    </Requirements>
+  <VersionOverrides xsi:type="VersionOverridesV1_1"
+      xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1">
+
     <Hosts>
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
-          <!-- Event-based activation -->
           <ExtensionPoint xsi:type="LaunchEvent">
             <LaunchEvents>
               <LaunchEvent Type="OnMessageSend" FunctionName="checkRecipientsOnSend"/>
@@ -46,19 +47,16 @@
         </DesktopFormFactor>
       </Host>
     </Hosts>
+
     <Resources>
       <bt:Urls>
-        <bt:Url id="Functions.Url" DefaultValue="https://example.com/functions.html"/>
+        <bt:Url id="Functions.Url" DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/functions.html"/>
+        <bt:Url id="Dialog.Url" DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/dialog.html"/>
       </bt:Urls>
-      <bt:ShortStrings>
-        <bt:String id="groupLabel" DefaultValue="Reply Tools"/>
-      </bt:ShortStrings>
-      <bt:LongStrings>
-        <bt:String id="buttonTooltip" DefaultValue="Warn if too many recipients on Reply All"/>
-      </bt:LongStrings>
     </Resources>
+
     <Runtimes>
-      <Runtime resid="Functions.Url" lifetime="long" />
+      <Runtime resid="Functions.Url" lifetime="long"/>
     </Runtimes>
   </VersionOverrides>
 </OfficeApp>
