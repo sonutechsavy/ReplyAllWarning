@@ -4,98 +4,61 @@
            xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
            xmlns:ov="http://schemas.microsoft.com/office/mailappversionoverrides"
            xsi:type="MailApp">
-
-  <Id>9f86bab1-4fb6-4ae6-9ed9-ffc48ea8ae08</Id>
+  <Id>3fd77d7e-8d9c-4301-bd1b-6a9d52d5b1f2</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>sonutechsavy</ProviderName>
+  <ProviderName>TechSavyPro</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Reply All Warning"/>
-  <Description DefaultValue="Warns users before replying to all recipients."/>
-  <IconUrl DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/icon-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/icon-80.png"/>
-  <SupportUrl DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning"/>
-
-  <AppDomains>
-    <AppDomain>https://sonutechsavy.github.io</AppDomain>
-  </AppDomains>
-
+  <DisplayName DefaultValue="Reply-All Guard"/>
+  <Description DefaultValue="Warn or block when Reply All has more than 3 recipients."/>
+  <IconUrl DefaultValue="https://example.com/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://example.com/assets/icon-80.png"/>
+  <SupportUrl DefaultValue="https://example.com"/>
   <Hosts>
-    <Host Name="Mailbox"/>
+    <Host Name="Mailbox" />
   </Hosts>
-
   <Requirements>
-    <Sets DefaultMinVersion="1.5">
-      <Set Name="Mailbox"/>
+    <Sets DefaultMinVersion="1.10">
+      <Set Name="Mailbox" />
     </Sets>
   </Requirements>
-
   <FormSettings>
-    <Form xsi:type="ItemRead">
-      <DesktopSettings>
-        <SourceLocation DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/taskpane.html"/>
-        <RequestedHeight>250</RequestedHeight>
-      </DesktopSettings>
-    </Form>
+    <Form xsi:type="ItemCompose" />
   </FormSettings>
+  <Permissions>ReadWriteItem</Permissions>
 
-  <Permissions>ReadWriteMailbox</Permissions>
-
-  <Rule xsi:type="RuleCollection" Mode="Or">
-    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
-  </Rule>
-
-  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides">
+  <VersionOverrides xsi:type="VersionOverridesV1_0" xmlns="http://schemas.microsoft.com/office/mailappversionoverrides">
     <Requirements>
-      <bt:Sets DefaultMinVersion="1.5">
-        <bt:Set Name="Mailbox"/>
+      <bt:Sets DefaultMinVersion="1.10">
+        <bt:Set Name="Mailbox" />
       </bt:Sets>
     </Requirements>
     <Hosts>
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
-          <FunctionFile resid="functionFileUrl"/>
-          <ExtensionPoint xsi:type="MessageReadCommandSurface">
-            <OfficeTab id="TabDefault">
-              <Group id="msgReadGroup">
-                <Label resid="groupLabel"/>
-                <Control xsi:type="Button" id="msgReadButton">
-                  <Label resid="buttonLabel"/>
-                  <Supertip>
-                    <Title resid="buttonLabel"/>
-                    <Description resid="buttonTooltip"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="icon16"/>
-                    <bt:Image size="32" resid="icon32"/>
-                    <bt:Image size="80" resid="icon80"/>
-                  </Icon>
-                  <Action xsi:type="ExecuteFunction">
-                    <FunctionName>onReplyAll</FunctionName>
-                  </Action>
-                </Control>
-              </Group>
-            </OfficeTab>
+          <!-- Event-based activation -->
+          <ExtensionPoint xsi:type="LaunchEvent">
+            <LaunchEvents>
+              <LaunchEvent Type="OnMessageSend" FunctionName="checkRecipientsOnSend"/>
+            </LaunchEvents>
+            <SendMode>PromptUser</SendMode>
+            <SourceLocation resid="Functions.Url"/>
           </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
     </Hosts>
     <Resources>
-      <bt:Images>
-        <bt:Image id="icon16" DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/icon-16.png"/>
-        <bt:Image id="icon32" DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/icon-32.png"/>
-        <bt:Image id="icon80" DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/icon-80.png"/>
-      </bt:Images>
       <bt:Urls>
-        <bt:Url id="functionFileUrl" DefaultValue="https://sonutechsavy.github.io/ReplyAllWarning/taskpane.html"/>
+        <bt:Url id="Functions.Url" DefaultValue="https://example.com/functions.html"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="groupLabel" DefaultValue="Reply Tools"/>
-        <bt:String id="buttonLabel" DefaultValue="Reply All Warning"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="buttonTooltip" DefaultValue="Warns before replying to all recipients"/>
+        <bt:String id="buttonTooltip" DefaultValue="Warn if too many recipients on Reply All"/>
       </bt:LongStrings>
     </Resources>
+    <Runtimes>
+      <Runtime resid="Functions.Url" lifetime="long" />
+    </Runtimes>
   </VersionOverrides>
-
 </OfficeApp>
